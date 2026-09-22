@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Objetivos do Ano</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Chakra Petch for digital/futuristic numbers and text -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'dark-bg': '#0a0914',
+                        'card-bg': '#141328',
+                        'card-header': '#1b1a32',
+                        'neon-green': '#00FF66',
+                        'neon-green-dark': '#00cc52',
+                        'tab-inactive': '#22203d',
+                        'tab-active': '#2c294f',
+                        'border-subtle': '#2d2a50'
+                    },
+                    fontFamily: {
+                        chakra: ['"Chakra Petch"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Chakra Petch', sans-serif;
+            background-color: #0a0914;
+            color: #ffffff;
+        }
+
+        /* Efeito de cursor piscando no título */
+        .blinking-cursor::after {
+            content: '_';
+            animation: blink 1s infinite;
+            color: #00FF66;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Suavização de transições */
+        .tab-btn {
+            transition: all 0.25s ease-in-out;
+        }
+
+        /* Estilo personalizado de números no cronômetro */
+        .digital-number {
+            font-variant-numeric: tabular-nums;
+            letter-spacing: -0.02em;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-center items-center p-4 sm:p-6 md:p-12 select-none">
+
+    <div class="w-full max-w-4xl mb-8 sm:mb-12">
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white blinking-cursor">
+            Meus objetivos do ano
+        </h1>
+    </div>
+
+    <main class="w-full max-w-4xl bg-card-bg rounded-2xl md:rounded-3xl shadow-2xl border border-border-subtle/50 overflow-hidden">
+        
+        <!-- Tab Navigation Bar -->
+        <nav class="grid grid-cols-2 md:grid-cols-4 bg-card-header border-b border-border-subtle/60 text-center text-xs sm:text-sm font-medium">
+            <button 
+                onclick="selectGoal(0)" 
+                id="tab-0"
+                class="tab-btn py-4 sm:py-5 px-3 border-t-4 border-transparent hover:text-neon-green text-gray-300 font-medium flex items-center justify-center h-full">
+                Estudar cursos na Alura
+            </button>
+            <button 
+                onclick="selectGoal(1)" 
+                id="tab-1"
+                class="tab-btn py-4 sm:py-5 px-3 border-t-4 border-neon-green bg-tab-active text-white font-semibold flex items-center justify-center h-full">
+                Criar projetos em JavaScript
+            </button>
+            <button 
+                onclick="selectGoal(2)" 
+                id="tab-2"
+                class="tab-btn py-4 sm:py-5 px-3 border-t-4 border-transparent hover:text-neon-green text-gray-300 font-medium flex items-center justify-center h-full">
+                Criar um portfólio
+            </button>
+            <button 
+                onclick="selectGoal(3)" 
+                id="tab-3"
+                class="tab-btn py-4 sm:py-5 px-3 border-t-4 border-transparent hover:text-neon-green text-gray-300 font-medium flex items-center justify-center h-full">
+                Atualizar meu currículo
+            </button>
+        </nav>
+
+        <div class="p-8 sm:p-12 md:p-16 text-center flex flex-col items-center justify-center min-h-[380px]">
+            
+            <!-- Goal Title -->
+            <h2 id="goal-title" class="text-xl sm:text-2xl md:text-3xl font-semibold mb-8 sm:mb-10 text-white tracking-wide max-w-2xl">
+                Criar 5 projetos em JavaScript
+            </h2>
+
+            <!-- Subtitle -->
+            <p class="text-xs sm:text-sm md:text-base font-bold text-neon-green tracking-widest uppercase mb-6 sm:mb-10">
+                TEMPO PARA COMPLETAR OBJETIVO
+            </p>
+
+            <div class="grid grid-cols-4 gap-2 sm:gap-6 md:gap-10 w-full max-w-2xl">
+                <!-- Days -->
+                <div class="flex flex-col items-center">
+                    <span id="days" class="digital-number text-4xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight">07</span>
+                    <span class="text-neon-green text-sm sm:text-lg md:text-xl font-medium mt-1 sm:mt-2">dias</span>
+                </div>
+
+                <!-- Hours -->
+                <div class="flex flex-col items-center">
+                    <span id="hours" class="digital-number text-4xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight">13</span>
+                    <span class="text-neon-green text-sm sm:text-lg md:text-xl font-medium mt-1 sm:mt-2">horas</span>
+                </div>
+
+                <!-- Minutes -->
+                <div class="flex flex-col items-center">
+                    <span id="minutes" class="digital-number text-4xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight">18</span>
+                    <span class="text-neon-green text-sm sm:text-lg md:text-xl font-medium mt-1 sm:mt-2">min</span>
+                </div>
+
+                <!-- Seconds -->
+                <div class="flex flex-col items-center">
+                    <span id="seconds" class="digital-number text-4xl sm:text-6xl md:text-7xl font-bold text-white tracking-tight">13</span>
+                    <span class="text-neon-green text-sm sm:text-lg md:text-xl font-medium mt-1 sm:mt-2">seg</span>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        // Goal data setup with target dates
+        const now = new Date().getTime();
+        
+        const goals = [
+            {
+                tabName: "Estudar cursos na Alura",
+                title: "Concluir 10 cursos de Desenvolvimento Front-end na Alura",
+                // Target: 30 days from now
+                deadline: new Date(now + (30 * 24 * 60 * 60 * 1000) + (5 * 60 * 60 * 1000)).getTime()
+            },
+            {
+                tabName: "Criar projetos em JavaScript",
+                title: "Criar 5 projetos em JavaScript",
+                // Target: 7 days, 13 hours, 18 minutes, 13 seconds (matches screenshot baseline)
+                deadline: new Date(now + (7 * 24 * 60 * 60 * 1000) + (13 * 60 * 60 * 1000) + (18 * 60 * 1000) + (13 * 1000)).getTime()
+            },
+            {
+                tabName: "Criar um portfólio",
+                title: "Publicar meu portfólio no GitHub Pages com 3 projetos de destaque",
+                // Target: 15 days from now
+                deadline: new Date(now + (15 * 24 * 60 * 60 * 1000) + (8 * 60 * 60 * 1000)).getTime()
+            },
+            {
+                tabName: "Atualizar meu currículo",
+                title: "Atualizar currículo e perfil do LinkedIn com novos certificados",
+                // Target: 3 days from now
+                deadline: new Date(now + (3 * 24 * 60 * 60 * 1000) + (12 * 60 * 60 * 1000)).getTime()
+            }
+        ];
+
+        let activeIndex = 1; // Default to "Criar projetos em JavaScript" like in screenshot
+        let timerInterval = null;
+
+        // Function to select and switch active goal tab
+        function selectGoal(index) {
+            activeIndex = index;
+            
+            // Update Tab styles
+            for (let i = 0; i < goals.length; i++) {
+                const tabEl = document.getElementById(`tab-${i}`);
+                if (i === index) {
+                    tabEl.className = "tab-btn py-4 sm:py-5 px-3 border-t-4 border-neon-green bg-tab-active text-white font-semibold flex items-center justify-center h-full";
+                } else {
+                    tabEl.className = "tab-btn py-4 sm:py-5 px-3 border-t-4 border-transparent hover:text-neon-green text-gray-300 font-medium flex items-center justify-center h-full";
+                }
+            }
+
+            // Update main title description
+            document.getElementById("goal-title").innerText = goals[index].title;
+
+            // Recalculate countdown immediately
+            updateCountdown();
+        }
+
+        // Format single digit numbers with leading zero
+        function formatTime(time) {
+            return time < 10 ? `0${time}` : time;
+        }
+
+        // Countdown calculation logic
+        function updateCountdown() {
+            const currentGoal = goals[activeIndex];
+            const currentTime = new Date().getTime();
+            const timeDifference = currentGoal.deadline - currentTime;
+
+            if (timeDifference <= 0) {
+                document.getElementById("days").innerText = "00";
+                document.getElementById("hours").innerText = "00";
+                document.getElementById("minutes").innerText = "00";
+                document.getElementById("seconds").innerText = "00";
+                return;
+            }
+
+            // Time math calculations
+            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+
+            // Update DOM elements
+            document.getElementById("days").innerText = formatTime(days);
+            document.getElementById("hours").innerText = formatTime(hours);
+            document.getElementById("minutes").innerText = formatTime(minutes);
+            document.getElementById("seconds").innerText = formatTime(seconds);
+        }
+
+        // Initialize timer when page loads
+        window.onload = function() {
+            selectGoal(1); // Select the second tab initially as shown in image
+            timerInterval = setInterval(updateCountdown, 1000);
+        };
+    </script>
+</body>
+</html>
